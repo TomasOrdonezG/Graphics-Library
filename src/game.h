@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "square.h"
+#include "shape.h"
 
 inline void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
@@ -77,11 +77,11 @@ private:
     glm::ivec2 dimensions;
 
     // Sprites
-    Square sq;
+    Shape sq;
 
     void initGame()
     {
-        sq = Square(glm::ivec2(10, 10), glm::ivec2(50, 50), glm::vec3(255, 0, 0), dimensions);
+        sq = Shape(glm::ivec2(10, 10), glm::ivec2(50, 50), glm::vec3(255, 0, 0), dimensions);
     }
 
 };

@@ -1,5 +1,5 @@
-#ifndef SQUARE_H
-#define SQUARE_H
+#ifndef SHAPE_H
+#define SHAPE_H
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -11,13 +11,13 @@
 
 #include "shader.h"
 
-class Square
+class Shape
 {
 public:
 
     // Initializers
-    Square();
-    Square(glm::ivec2 position, glm::ivec2 dimensions, glm::vec3 colour, glm::ivec2 windowDimensions);
+    Shape();
+    Shape(glm::ivec2 position, glm::ivec2 dimensions, glm::vec3 colour, glm::ivec2 windowDimensions);
     
     // State handling
     void perFrame(float dt);

@@ -1,8 +1,8 @@
-#include "square.h"
+#include "shape.h"
 
-Square::Square() {}
+Shape::Shape() {}
 
-Square::Square(glm::ivec2 position, glm::ivec2 dimensions, glm::vec3 colour, glm::ivec2 windowDimensions)
+Shape::Shape(glm::ivec2 position, glm::ivec2 dimensions, glm::vec3 colour, glm::ivec2 windowDimensions)
     : position(position)
     , dimensions(dimensions)
     , colour(colour)
@@ -38,13 +38,13 @@ Square::Square(glm::ivec2 position, glm::ivec2 dimensions, glm::vec3 colour, glm
     glEnableVertexAttribArray(0);
 }
     
-void Square::perFrame(float dt)
+void Shape::perFrame(float dt)
 {
     applyGravity();
     detectCollision();
 }
 
-void Square::draw()
+void Shape::draw()
 {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices.data()), vertices.data()); // Update VBO with new positions
@@ -54,7 +54,7 @@ void Square::draw()
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void Square::onUpdate(glm::ivec2 windowDimensions)
+void Shape::onUpdate(glm::ivec2 windowDimensions)
 {
     // Recalculate vertices
     positionNorm = (glm::vec2)position / (glm::vec2)windowDimensions - 0.5f;
@@ -67,12 +67,12 @@ void Square::onUpdate(glm::ivec2 windowDimensions)
     };
 }
 
-void Square::applyGravity()
+void Shape::applyGravity()
 {
 
 }
 
-void Square::detectCollision()
+void Shape::detectCollision()
 {
 
 }
