@@ -61,10 +61,10 @@ endif
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/game.o
 GENERATED += $(OBJDIR)/main.o
-GENERATED += $(OBJDIR)/square.o
+OBJECTS += $(OBJDIR)/game.o
 OBJECTS += $(OBJDIR)/main.o
-OBJECTS += $(OBJDIR)/square.o
 
 # Rules
 # #############################################
@@ -128,10 +128,10 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/main.o: src/main.cpp
+$(OBJDIR)/game.o: src/game.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/square.o: src/square.cpp
+$(OBJDIR)/main.o: src/main.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
