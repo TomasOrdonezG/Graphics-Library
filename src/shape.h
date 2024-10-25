@@ -14,6 +14,7 @@ public:
 
     Shape(glm::ivec2 position, glm::vec3 colour)
         : position(position)
+        , positionCached(position)
         , colour(colour)
         , shader(vertexShaderSource, fragmentShaderSource)
     {}
@@ -21,16 +22,22 @@ public:
     void draw()
     {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices.data()), vertices.data()); // Update VBO with new positions
+        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data()); // Update VBO with new positions
         glUseProgram(shader.ID);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
     }
-
-    virtual void perFrame(float dt)
+    
+    void watchPositionUpdate()
     {
-
+        if (position != positionCached)
+        {
+            updateVertices();
+            positionCached = position;
+        }
     }
+
+    virtual void perFrame(float dt) {};
 
 private:
 
@@ -82,15 +89,16 @@ protected:
     std::vector<float> vertices;
 
     glm::vec2 positionNorm;
+    glm::ivec2 positionCached;
 
     void initialize()
     {
-        initVertices();
+        updateVertices();
         initIndices();
         createBuffers();
     }
 
-    virtual void initVertices() = 0;
+    virtual void updateVertices() = 0;
     virtual void initIndices() = 0;
 
 };

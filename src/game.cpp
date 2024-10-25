@@ -14,19 +14,21 @@ namespace Game
         glViewport(0, 0, width, height);
     }
 
-    void loop()
+    void loop(void (*perFrame)())
     {
         while (!glfwWindowShouldClose(window))
         {
             glClear(GL_COLOR_BUFFER_BIT);
 
+            perFrame();
+
+            // Draw all shapes
             for (Shape *shape : shapes)
             {
+                shape->watchPositionUpdate();
                 shape->perFrame(0.1);
                 shape->draw();
             }
-
-            // * Game logic goes here
             
             glfwSwapBuffers(window);
             glfwPollEvents();

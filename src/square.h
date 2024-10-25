@@ -24,9 +24,8 @@ protected:
 
     glm::vec2 dimensionsNorm;
 
-    void initVertices() override
+    void updateVertices() override
     {
-        printf("Creating vertices...\n");
         positionNorm = (glm::vec2)position / (glm::vec2)Game::windowDimensions - 0.5f;
         dimensionsNorm = (float)side / (glm::vec2)Game::windowDimensions;
         vertices = {

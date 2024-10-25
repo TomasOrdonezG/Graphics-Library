@@ -21,7 +21,7 @@ namespace Game
 
     void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
-    void loop();
+    void loop(void (*perFrame)());
     void add(Shape *shape);
     void start(int w, int h, const char *title);
     void end();
